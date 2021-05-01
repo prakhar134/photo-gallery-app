@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/user.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 app.use("/posts", postRoutes);
+app.use("/user", userRoutes)
 
 app.use("/", (req, res) => {
   res.send("Welcome to the server");
