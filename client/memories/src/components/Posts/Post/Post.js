@@ -51,6 +51,7 @@ const Post = ({ post, setcurrentId }) => {
         </Typography>
       </div>
       <div className={classes.overlay2}>
+      {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
         <Button
           style={{ color: "white" }}
           size="small"
@@ -58,6 +59,7 @@ const Post = ({ post, setcurrentId }) => {
         >
           <MoreHorizIcon fonstSize="default" />
         </Button>
+      )}
       </div>
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary">
