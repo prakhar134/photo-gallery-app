@@ -17,6 +17,8 @@ import { signin, signup } from "../../actions/auth";
 import { AUTH } from "../../constants/actionTypes";
 import useStyles from "./styles";
 import Input from "./Input";
+import toastifier from 'toastifier';
+import 'toastifier/dist/toastifier.min.css';
 
 const initialState = {
   firstName: "",
@@ -44,9 +46,11 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+console.log(form)
     if (isSignup) {
+      console.log(form)
       dispatch(signup(form, history));
+      //history.push("/")
     } else {
       dispatch(signin(form, history));
     }
@@ -56,6 +60,9 @@ const Auth = () => {
       console.log(res)
     const result = res?.profileObj;
     const token = res?.tokenId;
+    if(result) toastifier("Logged in Successfully", {
+      animation: "zoom"
+    })
 
     try {
       dispatch({ type: AUTH, data: { result, token } });

@@ -5,6 +5,8 @@ import memories from "../../images/memories.png";
 import useStyles from "./styles";
 import {useDispatch} from "react-redux"
 import { LOGOUT } from "../../constants/actionTypes";
+import toastifier from 'toastifier';
+import 'toastifier/dist/toastifier.min.css';
 
 const Navbar = () => {
   const classes = useStyles();
@@ -25,6 +27,9 @@ const Navbar = () => {
         dispatch({type: LOGOUT})
         history.push("/")
         setUser(null)
+        toastifier("Logged out Successfully", {
+          animation: "zoom"
+        })
       
   }
   return (
@@ -51,13 +56,13 @@ const Navbar = () => {
           <div className={classes.profile}>
             <Avatar
               className={classes.purple}
-              alt={user.result.name}
-              src={user.result.imageUrl}
+              alt={user?.result?.name}
+              src={user?.result?.imageUrl}
             >
-              {user.result.name.charAt([0])}
+              {user?.result?.name.charAt([0])}
             </Avatar>
             <Typography className={classes.userName} variant="h6">
-              {user.result.name}
+              {user?.result?.name}
             </Typography>
             <Button
               variant="contained"
